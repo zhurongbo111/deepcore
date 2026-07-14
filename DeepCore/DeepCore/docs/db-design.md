@@ -109,3 +109,15 @@
 | Amount      | decimal(18,2) |                               | 金额             |
 | CreatedTime | datetime      | NOT NULL                      | 创建时间         |
 | UpdatedTime | datetime      | NOT NULL                      | 更新时间         |
+
+库存Inventory
+
+| 字段              | 类型          | 约束                       | 说明     |
+| ----------------- | ------------- | -------------------------- | -------- |
+| Id                | bigint        | PK                         | 主键     |
+| ProductId         | bigint        | NOT NULL, FK -> Product.id | 商品     |
+| Quantity          | decimal(18,2) |                            | 库存数量 |
+| LockedQuantity    | decimal(18,2) |                            | 锁定数量 |
+| AvailableQuantity | decimal(18,2) |                            | 可用数量 |
+| CreatedTime       | datetime      | NOT NULL                   | 创建时间 |
+| UpdatedTime       | datetime      | NOT NULL                   | 更新时间 |

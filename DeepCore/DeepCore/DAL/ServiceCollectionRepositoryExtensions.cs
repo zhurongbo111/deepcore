@@ -24,6 +24,7 @@ namespace DeepCore.DAL
             services.AddScoped<ISalesOrderRepository, SalesOrderRepository>();
             services.AddScoped<ISalesOrderItemRepository, SalesOrderItemRepository>();
             services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<IInventoryRepository, InventoryRepository>();
             return services;
         }
     }

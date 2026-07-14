@@ -70,6 +70,39 @@ namespace DeepCore.DAL.Migrations
                     b.ToTable("Customer", (string)null);
                 });
 
+            modelBuilder.Entity("DeepCore.DAL.Entities.Inventory", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<decimal>("AvailableQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<decimal>("LockedQuantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("Quantity")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("UpdatedTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("Inventory", (string)null);
+                });
+
             modelBuilder.Entity("DeepCore.DAL.Entities.Product", b =>
                 {
                     b.Property<long>("Id")
@@ -371,6 +404,17 @@ namespace DeepCore.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("DeepCore.DAL.Entities.Inventory", b =>
+                {
+                    b.HasOne("DeepCore.DAL.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("DeepCore.DAL.Entities.PurchaseOrder", b =>

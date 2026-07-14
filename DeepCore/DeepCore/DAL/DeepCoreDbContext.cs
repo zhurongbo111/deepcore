@@ -37,5 +37,6 @@ namespace DeepCore.DAL
         public DbSet<SalesOrderItem> SalesOrderItems { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Inventory> Inventories { get; set; }
     }
 }

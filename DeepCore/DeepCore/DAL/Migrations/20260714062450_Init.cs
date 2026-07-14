@@ -149,6 +149,31 @@ namespace DeepCore.DAL.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Inventory",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<long>(type: "bigint", nullable: false),
+                    Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LockedQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    AvailableQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inventory", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Inventory_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "PurchaseOrder",
                 columns: table => new
                 {
@@ -242,6 +267,11 @@ namespace DeepCore.DAL.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Inventory_ProductId",
+                table: "Inventory",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PurchaseOrder_SupplierId",
                 table: "PurchaseOrder",
                 column: "SupplierId");
@@ -275,6 +305,9 @@ namespace DeepCore.DAL.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Inventory");
+
             migrationBuilder.DropTable(
                 name: "PurchaseOrderItem");
 
