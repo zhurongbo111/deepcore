@@ -1,4 +1,4 @@
-﻿namespace DeepCore.RequestHandlers.AuthLogin
+﻿namespace DeepCore.RequestHandlers.Auth
 {
     public class AuthLoginResponse
     {

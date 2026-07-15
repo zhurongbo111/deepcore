@@ -1,37 +1,38 @@
-﻿using DeepCore.RequestHandlers;
-using DeepCore.RequestHandlers.Auth;
+using DeepCore.RequestHandlers;
+using DeepCore.RequestHandlers.Inventories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DeepCore.Controllers
 {
-    [Route("api/v1/auth")]
+    [Route("api/v1/inventories")]
     [ApiController]
     [Consumes("application/json")]
-    public class AuthController : ControllerBase
+    public class InventoriesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public AuthController(IMediator mediator)
+        public InventoriesController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] AuthLoginRequest request)
+        [HttpGet]
+        public async Task<IActionResult> List([FromQuery] InventoryListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
             return Ok(result);
         }
 
-        [HttpPost("me")]
-        public async Task<IActionResult> Me([FromBody] AuthMeRequest request)
+        [HttpGet("product/{productId}")]
+        public async Task<IActionResult> GetByProduct(long productId)
         {
+            var request = new GetInventoryByProductRequest { ProductId = productId };
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
             return Ok(result);
         }
 
-        [HttpPut("password")]
-        public async Task<IActionResult> ChangePassword([FromBody] AuthPasswordChangeRequest request)
+        [HttpPost("adjust")]
+        public async Task<IActionResult> Adjust([FromBody] AdjustInventoryRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
             return Ok(result);
