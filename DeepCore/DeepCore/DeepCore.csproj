@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Repository\**" />
-    <Content Remove="Repository\**" />
-    <EmbeddedResource Remove="Repository\**" />
-    <None Remove="Repository\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="docs\" />
   </ItemGroup>
 

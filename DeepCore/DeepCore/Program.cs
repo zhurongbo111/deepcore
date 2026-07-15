@@ -1,5 +1,5 @@
 using DeepCore.DAL;
-using Microsoft.EntityFrameworkCore;
+using DeepCore.RequestHandlers;
 
 namespace DeepCore
 {
@@ -38,6 +38,7 @@ namespace DeepCore
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddRepository(configuration);
+            services.AddRequestHandlers();
         }
     }
 }
