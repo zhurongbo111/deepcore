@@ -1,6 +1,7 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Inventories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(InventoryListResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> List([FromQuery] InventoryListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -24,6 +26,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet("product/{productId}")]
+        [ProducesResponseType(typeof(GetInventoryByProductResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetByProduct(long productId)
         {
             var request = new GetInventoryByProductRequest { ProductId = productId };
@@ -32,6 +35,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("adjust")]
+        [ProducesResponseType(typeof(AdjustInventoryResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Adjust([FromBody] AdjustInventoryRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);

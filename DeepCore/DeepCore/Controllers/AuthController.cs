@@ -1,6 +1,7 @@
 ﻿using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Auth;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("login")]
+        [ProducesResponseType(typeof(AuthLoginResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Login([FromBody] AuthLoginRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -24,6 +26,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("me")]
+        [ProducesResponseType(typeof(AuthMeResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Me([FromBody] AuthMeRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -31,6 +34,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("password")]
+        [ProducesResponseType(typeof(AuthPasswordChangeResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangePassword([FromBody] AuthPasswordChangeRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);

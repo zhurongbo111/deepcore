@@ -1,6 +1,7 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.SalesOrders;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CreateSalesOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreateSalesOrderRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -24,6 +26,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("{id}/submit")]
+        [ProducesResponseType(typeof(SubmitSalesOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Submit(long id)
         {
             var request = new SubmitSalesOrderRequest { Id = id };
@@ -32,6 +35,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(SalesOrderListResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> List([FromQuery] SalesOrderListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -39,6 +43,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetSalesOrderByIdResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(long id)
         {
             var request = new GetSalesOrderByIdRequest { Id = id };
@@ -47,6 +52,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("{id}/cancel")]
+        [ProducesResponseType(typeof(CancelSalesOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Cancel(long id)
         {
             var request = new CancelSalesOrderRequest { Id = id };
@@ -55,6 +61,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("{id}/stock-out")]
+        [ProducesResponseType(typeof(StockOutSalesOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> StockOut(long id)
         {
             var request = new StockOutSalesOrderRequest { Id = id };

@@ -1,6 +1,7 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Customers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CreateCustomerResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreateCustomerRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -24,6 +26,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(UpdateCustomerResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(long id, [FromBody] UpdateCustomerRequest request)
         {
             request.Id = id;
@@ -32,6 +35,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(CustomerListResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> List([FromQuery] CustomerListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -39,6 +43,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetCustomerByIdResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(long id)
         {
             var request = new GetCustomerByIdRequest { Id = id };
@@ -47,6 +52,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("{id}/status")]
+        [ProducesResponseType(typeof(PatchCustomerStatusResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangeStatus(long id, [FromBody] PatchCustomerStatusRequest request)
         {
             request.Id = id;

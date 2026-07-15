@@ -1,6 +1,7 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Suppliers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CreateSupplierResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreateSupplierRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -24,6 +26,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(UpdateSupplierResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(long id, [FromBody] UpdateSupplierRequest request)
         {
             request.Id = id;
@@ -32,6 +35,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(SupplierListResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> List([FromQuery] SupplierListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -39,6 +43,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetSupplierByIdResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(long id)
         {
             var request = new GetSupplierByIdRequest { Id = id };
@@ -47,6 +52,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("{id}/status")]
+        [ProducesResponseType(typeof(PatchSupplierStatusResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangeStatus(long id, [FromBody] PatchSupplierStatusRequest request)
         {
             request.Id = id;

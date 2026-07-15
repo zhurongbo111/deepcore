@@ -1,6 +1,7 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.PurchaseOrders;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -17,6 +18,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CreatePurchaseOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreatePurchaseOrderRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -24,6 +26,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(UpdatePurchaseOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(long id, [FromBody] UpdatePurchaseOrderRequest request)
         {
             request.Id = id;
@@ -32,6 +35,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(PurchaseOrderListResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> List([FromQuery] PurchaseOrderListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -39,6 +43,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetPurchaseOrderByIdResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(long id)
         {
             var request = new GetPurchaseOrderByIdRequest { Id = id };
@@ -47,6 +52,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("{id}/cancel")]
+        [ProducesResponseType(typeof(CancelPurchaseOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Cancel(long id)
         {
             var request = new CancelPurchaseOrderRequest { Id = id };
@@ -55,6 +61,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("{id}/submit")]
+        [ProducesResponseType(typeof(SubmitPurchaseOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Submit(long id)
         {
             var request = new SubmitPurchaseOrderRequest { Id = id };
@@ -63,6 +70,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("{id}/stock-in")]
+        [ProducesResponseType(typeof(StockInPurchaseOrderResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> StockIn(long id)
         {
             var request = new StockInPurchaseOrderRequest { Id = id };

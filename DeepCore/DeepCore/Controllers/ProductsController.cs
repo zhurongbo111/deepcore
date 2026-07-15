@@ -2,6 +2,7 @@ using DeepCore.RequestHandlers.Products;
 using DeepCore.RequestHandlers.Shared;
 using DeepCore.RequestHandlers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace DeepCore.Controllers
 {
@@ -18,6 +19,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(typeof(CreateProductResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Create([FromBody] CreateProductRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -25,6 +27,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(UpdateProductResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Update(long id, [FromBody] UpdateProductRequest request)
         {
             request.Id = id;
@@ -33,6 +36,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPatch("{id}/status")]
+        [ProducesResponseType(typeof(PatchProductStatusResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> PatchStatus(long id, [FromBody] PatchProductStatusRequest request)
         {
             request.Id = id;
@@ -41,6 +45,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(ProductListResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> List([FromQuery] ProductListRequest request)
         {
             var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
@@ -48,6 +53,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetProductByIdResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get(long id)
         {
             var request = new GetProductByIdRequest { Id = id };
