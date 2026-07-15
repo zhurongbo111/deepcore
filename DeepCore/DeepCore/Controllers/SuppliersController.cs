@@ -1,13 +1,15 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Suppliers;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DeepCore.Controllers
 {
     [Route("api/v1/suppliers")]
     [ApiController]
     [Consumes("application/json")]
+    [Authorize]
     public class SuppliersController : ControllerBase
     {
         private readonly IMediator _mediator;

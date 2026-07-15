@@ -1,4 +1,5 @@
 ﻿using DeepCore.DAL.Repository;
+using DeepCore.DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

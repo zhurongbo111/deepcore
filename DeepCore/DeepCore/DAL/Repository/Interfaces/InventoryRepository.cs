@@ -1,6 +1,6 @@
 using DeepCore.DAL.Entities;
 
-namespace DeepCore.DAL.Repository
+namespace DeepCore.DAL.Repository.Interfaces
 {
     public class InventoryRepository : AbstractEFRepository<Inventory>, IInventoryRepository
     {

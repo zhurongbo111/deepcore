@@ -1,4 +1,5 @@
 using DeepCore.DAL.Entities;
+using DeepCore.DAL.Repository.Interfaces;
 
 namespace DeepCore.DAL.Repository
 {

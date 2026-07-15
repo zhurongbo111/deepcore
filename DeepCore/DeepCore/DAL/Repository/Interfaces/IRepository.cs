@@ -1,4 +1,4 @@
-﻿namespace DeepCore.DAL.Repository
+﻿namespace DeepCore.DAL.Repository.Interfaces
 {
     public interface IRepository<TEntity>
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DeepCore.DAL.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace DeepCore.DAL.Repository
 {

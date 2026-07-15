@@ -1,13 +1,15 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Inventories;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DeepCore.Controllers
 {
     [Route("api/v1/inventories")]
     [ApiController]
     [Consumes("application/json")]
+    [Authorize]
     public class InventoriesController : ControllerBase
     {
         private readonly IMediator _mediator;

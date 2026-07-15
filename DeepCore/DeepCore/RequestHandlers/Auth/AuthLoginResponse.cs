@@ -1,6 +1,7 @@
 ﻿namespace DeepCore.RequestHandlers.Auth
 {
-    public class AuthLoginResponse
+    public class AuthLoginResponse : BaseResponse
     {
+        public string Token { get; set; }
     }
 }

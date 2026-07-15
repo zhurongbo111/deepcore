@@ -1,13 +1,15 @@
 using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.PurchaseOrders;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DeepCore.Controllers
 {
     [Route("api/v1/purchase-orders")]
     [ApiController]
     [Consumes("application/json")]
+    [Authorize]
     public class PurchaseOrdersController : ControllerBase
     {
         private readonly IMediator _mediator;

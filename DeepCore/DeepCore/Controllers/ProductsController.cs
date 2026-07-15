@@ -1,14 +1,16 @@
+using DeepCore.RequestHandlers;
 using DeepCore.RequestHandlers.Products;
 using DeepCore.RequestHandlers.Shared;
-using DeepCore.RequestHandlers;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DeepCore.Controllers
 {
     [Route("api/v1/products")]
     [ApiController]
     [Consumes("application/json")]
+    [Authorize]
     public class ProductsController : ControllerBase
     {
         private readonly IMediator _mediator;

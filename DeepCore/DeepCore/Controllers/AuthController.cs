@@ -2,6 +2,7 @@
 using DeepCore.RequestHandlers.Auth;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DeepCore.Controllers
 {
@@ -18,6 +19,7 @@ namespace DeepCore.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         [ProducesResponseType(typeof(AuthLoginResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Login([FromBody] AuthLoginRequest request)
         {
@@ -25,15 +27,17 @@ namespace DeepCore.Controllers
             return Ok(result);
         }
 
-        [HttpPost("me")]
+        [HttpGet("me")]
+        [Authorize]
         [ProducesResponseType(typeof(AuthMeResponse), StatusCodes.Status200OK)]
-        public async Task<IActionResult> Me([FromBody] AuthMeRequest request)
+        public async Task<IActionResult> Me()
         {
-            var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
+            var result = await _mediator.SendAsync(new AuthMeRequest(), HttpContext.RequestAborted);
             return Ok(result);
         }
 
         [HttpPut("password")]
+        [Authorize]
         [ProducesResponseType(typeof(AuthPasswordChangeResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> ChangePassword([FromBody] AuthPasswordChangeRequest request)
         {
