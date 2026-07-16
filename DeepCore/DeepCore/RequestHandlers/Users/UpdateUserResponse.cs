@@ -1,7 +1,6 @@
 namespace DeepCore.RequestHandlers.Users
 {
-    public class UpdateUserResponse
+    public class UpdateUserResponse : BaseResponse
     {
-        public long Id { get; set; }
     }
 }

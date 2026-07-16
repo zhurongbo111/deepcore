@@ -1,6 +1,6 @@
 namespace DeepCore.RequestHandlers.Users
 {
-    public class PatchUserStatusResponse
+    public class PatchUserStatusResponse : BaseResponse
     {
         public long Id { get; set; }
         public int Status { get; set; }
