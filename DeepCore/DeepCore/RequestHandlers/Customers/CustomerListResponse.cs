@@ -1,3 +1,4 @@
+using DeepCore.RequestHandlers.Shared;
 using System.Collections.Generic;
 
 namespace DeepCore.RequestHandlers.Customers
@@ -10,9 +11,7 @@ namespace DeepCore.RequestHandlers.Customers
         public string? Phone { get; set; }
     }
 
-    public class CustomerListResponse
+    public class CustomerListResponse : PagedResponse<CustomerDto>
     {
-        public IEnumerable<CustomerDto>? Items { get; set; }
-        public long TotalCount { get; set; }
     }
 }

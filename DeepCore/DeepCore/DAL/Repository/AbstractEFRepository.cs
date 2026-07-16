@@ -16,7 +16,7 @@ namespace DeepCore.DAL.Repository
 
         protected DeepCoreDbContext DbContext { get; }
 
-        protected IQueryable<TEntity> TableAsNoTacking
+        protected IQueryable<TEntity> TableAsNoTracking
         {
             get
             {

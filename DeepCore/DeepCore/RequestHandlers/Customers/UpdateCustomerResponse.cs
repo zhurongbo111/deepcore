@@ -1,7 +1,6 @@
 namespace DeepCore.RequestHandlers.Customers
 {
-    public class UpdateCustomerResponse
+    public class UpdateCustomerResponse : BaseResponse
     {
-        public long Id { get; set; }
     }
 }

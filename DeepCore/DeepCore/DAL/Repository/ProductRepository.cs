@@ -12,7 +12,7 @@ namespace DeepCore.DAL.Repository
 
         public Task<bool> ExistsByCodeAsync(string code, CancellationToken cancellationToken)
         {
-            return TableAsNoTacking.AnyAsync(p => p.Code == code, cancellationToken);
+            return TableAsNoTracking.AnyAsync(p => p.Code == code, cancellationToken);
         }
 
         public Task<Product?> GetByCodeAsync(string code, CancellationToken cancellationToken)
@@ -27,7 +27,7 @@ namespace DeepCore.DAL.Repository
 
         public async Task<(IEnumerable<Product> products, long total)> GetPagedAsync(int pageIndex, int pageSize, string? keyword, int? status, CancellationToken cancellationToken)
         {
-            var query = TableAsNoTacking;
+            var query = TableAsNoTracking;
             if(status != null)
             {
                 query = query.Where(p => p.Status == status.Value);
