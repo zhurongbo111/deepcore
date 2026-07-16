@@ -23,13 +23,13 @@ namespace DeepCore.DAL.Repository
             }
         }
 
-        public async Task<TEntity> InsertAsync(TEntity entity)
+        public async Task<TEntity> InsertAsync(TEntity entity, CancellationToken cancellationToken)
         {
             this.Table.Add(entity);
-            await this.DbContext.SaveChangesAsync().ConfigureAwait(false);
+            await this.DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
             return entity;
         }
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public async Task<TEntity> UpdateAsync(TEntity entity, CancellationToken cancellationToken)
         {
             var entry = this.DbContext.Entry(entity);
             if (entry.State == EntityState.Detached)
@@ -37,10 +37,10 @@ namespace DeepCore.DAL.Repository
                 entry.State = EntityState.Modified;
             }
 
-            await this.DbContext.SaveChangesAsync().ConfigureAwait(false);
+            await this.DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
             return entity;
         }
-        public async Task DeleteAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity, CancellationToken cancellationToken)
         {
             if (entity == null)
             {
@@ -49,7 +49,7 @@ namespace DeepCore.DAL.Repository
 
             this.DbContext.Entry(entity).State = EntityState.Deleted;
 
-            await this.DbContext.SaveChangesAsync().ConfigureAwait(false);
+            await this.DbContext.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
         }
     }
 }

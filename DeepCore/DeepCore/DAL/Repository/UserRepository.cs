@@ -15,5 +15,11 @@ namespace DeepCore.DAL.Repository
             return this.Table.Where(u => u.UserName == username)
                 .FirstOrDefaultAsync(cancellationToken);
         }
+
+        public Task<User?> GetUserAsync(Guid publicUserId, CancellationToken cancellationToken)
+        {
+            return this.Table.Where(u => u.PublicUserId == publicUserId)
+                .FirstOrDefaultAsync(cancellationToken);
+        }
     }
 }

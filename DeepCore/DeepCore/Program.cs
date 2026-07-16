@@ -43,6 +43,7 @@ namespace DeepCore
         {
             // Add services to the container.
             services.AddControllers();
+            services.AddHttpContextAccessor();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(options =>
             {
