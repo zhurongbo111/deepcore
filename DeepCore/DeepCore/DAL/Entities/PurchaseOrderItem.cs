@@ -2,7 +2,7 @@ using System;
 
 namespace DeepCore.DAL.Entities
 {
-    public class PurchaseOrderItem
+    public class PurchaseOrderItem : BaseEntity
     {
         public long Id { get; set; }
         public long OrderId { get; set; }
@@ -16,8 +16,5 @@ namespace DeepCore.DAL.Entities
         public decimal Price { get; set; }
 
         public decimal Amount { get; set; }
-        public DateTime CreatedTime { get; set; }
-
-        public DateTime UpdatedTime { get; set; }
     }
 }

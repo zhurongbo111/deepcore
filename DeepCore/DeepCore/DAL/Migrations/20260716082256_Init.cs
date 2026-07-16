@@ -56,8 +56,8 @@ namespace DeepCore.DAL.Migrations
                     PurchasePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     SalePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,8 +82,8 @@ namespace DeepCore.DAL.Migrations
                     Remark = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -108,11 +108,9 @@ namespace DeepCore.DAL.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Email = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    CreatedBy = table.Column<long>(type: "bigint", nullable: true),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    UpdatedBy = table.Column<long>(type: "bigint", nullable: true)
+                    Status = table.Column<int>(type: "int", nullable: false, defaultValue: 1),
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,13 +127,13 @@ namespace DeepCore.DAL.Migrations
                     CustomerId = table.Column<long>(type: "bigint", nullable: false),
                     OrderNo = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    OrderDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    OrderDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Remark = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -159,8 +157,8 @@ namespace DeepCore.DAL.Migrations
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     LockedQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AvailableQuantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -188,8 +186,8 @@ namespace DeepCore.DAL.Migrations
                     Status = table.Column<int>(type: "int", nullable: false),
                     Remark = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -214,8 +212,8 @@ namespace DeepCore.DAL.Migrations
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -246,8 +244,8 @@ namespace DeepCore.DAL.Migrations
                     Quantity = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CreatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedTime = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CreatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
+                    UpdatedTime = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -269,8 +267,8 @@ namespace DeepCore.DAL.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "CreatedBy", "CreatedTime", "Email", "PasswordHash", "Phone", "PublicUserId", "RealName", "Status", "UpdatedBy", "UpdatedTime", "UserName" },
-                values: new object[] { 1L, null, null, "admin@exmaple.com", "AQAAAAIAAYagAAAAEC8D8rWWMxZn5POiC5IQI1KKLTOYPeqLrip27T2uUQBpGHsZ6JJS5R/6UECsn0wRvQ==", "1234567890", new Guid("bb9e6295-75b0-4021-b630-bb99606116f0"), "Administrator", 0, null, null, "admin" });
+                columns: new[] { "Id", "CreatedTime", "Email", "PasswordHash", "Phone", "PublicUserId", "RealName", "Status", "UpdatedTime", "UserName" },
+                values: new object[] { 1L, new DateTimeOffset(new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 8, 0, 0, 0)), "admin@exmaple.com", "AQAAAAIAAYagAAAAEC8D8rWWMxZn5POiC5IQI1KKLTOYPeqLrip27T2uUQBpGHsZ6JJS5R/6UECsn0wRvQ==", "1234567890", new Guid("a4492f91-ee15-4cb4-83bc-8a48ca0b43b0"), "Administrator", 1, new DateTimeOffset(new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 8, 0, 0, 0)), "admin" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Inventory_ProductId",

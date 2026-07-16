@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DeepCore.DAL.Entities
 {
-    public class Product
+    public class Product : BaseEntity
     {
         public long Id { get; set; }
 
@@ -18,10 +18,6 @@ namespace DeepCore.DAL.Entities
         public decimal SalePrice { get; set; } = 0m;
 
         public int Status { get; set; } = 1;
-
-        public DateTime CreatedTime { get; set; }
-
-        public DateTime UpdatedTime { get; set; }
 
         public ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; } = new List<PurchaseOrderItem>();
 

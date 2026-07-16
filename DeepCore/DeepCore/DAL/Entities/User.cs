@@ -2,7 +2,7 @@ using System;
 
 namespace DeepCore.DAL.Entities
 {
-    public class User
+    public class User : BaseEntity
     {
         public long Id { get; set; }
 
@@ -18,14 +18,6 @@ namespace DeepCore.DAL.Entities
 
         public string? Email { get; set; }
 
-        public int Status { get; set; }
-
-        public DateTime? CreatedTime { get; set; }
-
-        public long? CreatedBy { get; set; }
-
-        public DateTime? UpdatedTime { get; set; }
-
-        public long? UpdatedBy { get; set; }
+        public int Status { get; set; } = 1;
     }
 }

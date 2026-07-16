@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace DeepCore.Services
 {
@@ -16,7 +17,7 @@ namespace DeepCore.Services
             var httpContent = _contextAccessor.HttpContext;
             if(httpContent != null)
             {
-                var subClaim = httpContent.User?.FindFirst(JwtRegisteredClaimNames.Sub);
+                var subClaim = httpContent.User?.FindFirst(JwtRegisteredClaimNames.Sub) ?? httpContent.User?.FindFirst(ClaimTypes.NameIdentifier);
                 if(subClaim != null)
                 {
                     return subClaim.Value;

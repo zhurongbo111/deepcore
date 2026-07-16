@@ -15,6 +15,16 @@ namespace DeepCore.RequestHandlers.Products
 
         public async Task<CreateProductResponse> HandleAsync(CreateProductRequest request, CancellationToken cancellationToken)
         {
+            var existingProduct = await _productRepository.ExistsByCodeAsync(request.Code, cancellationToken);
+            if (existingProduct)
+            {
+                return new CreateProductResponse
+                {
+                    Success = false,
+                    CodeExist = true,
+                    Message = $"Product with code '{request.Code}' already exists."
+                };
+            }
             var prod = new Product
             {
                 Code = request.Code,

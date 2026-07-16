@@ -2,7 +2,7 @@ using System;
 
 namespace DeepCore.DAL.Entities
 {
-    public class Inventory
+    public class Inventory : BaseEntity
     {
         public long Id { get; set; }
 
@@ -15,9 +15,5 @@ namespace DeepCore.DAL.Entities
         public decimal LockedQuantity { get; set; }
 
         public decimal AvailableQuantity { get; set; }
-
-        public DateTime CreatedTime { get; set; }
-
-        public DateTime UpdatedTime { get; set; }
     }
 }

@@ -81,7 +81,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("AvailableQuantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<decimal>("LockedQuantity")
@@ -93,7 +93,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -116,7 +116,7 @@ namespace DeepCore.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
@@ -140,7 +140,7 @@ namespace DeepCore.DAL.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -159,7 +159,7 @@ namespace DeepCore.DAL.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("OrderDate")
@@ -183,7 +183,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -207,7 +207,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<long>("OrderId")
@@ -222,7 +222,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -242,13 +242,13 @@ namespace DeepCore.DAL.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<long>("CustomerId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("OrderDate")
+                    b.Property<DateTimeOffset>("OrderDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("OrderNo")
@@ -266,7 +266,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -290,7 +290,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal?>("Amount")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<long>("OrderId")
@@ -305,7 +305,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<decimal>("Quantity")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -335,7 +335,7 @@ namespace DeepCore.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<DateTime>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
@@ -357,7 +357,7 @@ namespace DeepCore.DAL.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(1);
 
-                    b.Property<DateTime>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
@@ -373,10 +373,7 @@ namespace DeepCore.DAL.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("CreatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("CreatedTime")
+                    b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
@@ -400,12 +397,11 @@ namespace DeepCore.DAL.Migrations
                         .HasColumnType("varchar(50)");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
 
-                    b.Property<long?>("UpdatedBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("UpdatedTime")
+                    b.Property<DateTimeOffset>("UpdatedTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("UserName")
@@ -427,12 +423,14 @@ namespace DeepCore.DAL.Migrations
                         new
                         {
                             Id = 1L,
+                            CreatedTime = new DateTimeOffset(new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 8, 0, 0, 0)),
                             Email = "admin@exmaple.com",
                             PasswordHash = "AQAAAAIAAYagAAAAEC8D8rWWMxZn5POiC5IQI1KKLTOYPeqLrip27T2uUQBpGHsZ6JJS5R/6UECsn0wRvQ==",
                             Phone = "1234567890",
-                            PublicUserId = new Guid("bb9e6295-75b0-4021-b630-bb99606116f0"),
+                            PublicUserId = new Guid("a4492f91-ee15-4cb4-83bc-8a48ca0b43b0"),
                             RealName = "Administrator",
-                            Status = 0,
+                            Status = 1,
+                            UpdatedTime = new DateTimeOffset(new DateTime(2026, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 8, 0, 0, 0)),
                             UserName = "admin"
                         });
                 });
