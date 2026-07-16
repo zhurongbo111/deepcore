@@ -1,6 +1,6 @@
 namespace DeepCore.RequestHandlers.Products
 {
-    public class CreateProductResponse
+    public class CreateProductResponse : BaseResponse
     {
         public long Id { get; set; }
     }

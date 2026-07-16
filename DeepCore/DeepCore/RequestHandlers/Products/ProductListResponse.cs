@@ -1,3 +1,4 @@
+using DeepCore.RequestHandlers.Shared;
 using System.Collections.Generic;
 
 namespace DeepCore.RequestHandlers.Products
@@ -8,13 +9,12 @@ namespace DeepCore.RequestHandlers.Products
         public string? Code { get; set; }
         public string? Name { get; set; }
         public string? Unit { get; set; }
-        public decimal? Price { get; set; }
+        public decimal? PurchasePrice { get; set; }
+        public decimal? SalePrice { get; set; }
         public int Status { get; set; }
     }
 
-    public class ProductListResponse
+    public class ProductListResponse : PagedResponse<ProductDto>
     {
-        public IEnumerable<ProductDto>? Items { get; set; }
-        public long TotalCount { get; set; }
     }
 }
