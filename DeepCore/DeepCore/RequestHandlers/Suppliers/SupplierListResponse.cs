@@ -1,3 +1,4 @@
+using DeepCore.RequestHandlers.Shared;
 using System.Collections.Generic;
 
 namespace DeepCore.RequestHandlers.Suppliers
@@ -8,11 +9,10 @@ namespace DeepCore.RequestHandlers.Suppliers
         public string? Name { get; set; }
         public string? Contact { get; set; }
         public string? Phone { get; set; }
+        public int Status { get; set; }
     }
 
-    public class SupplierListResponse
+    public class SupplierListResponse : PagedResponse<SupplierDto>
     {
-        public IEnumerable<SupplierDto>? Items { get; set; }
-        public long TotalCount { get; set; }
     }
 }
