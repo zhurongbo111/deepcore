@@ -3,6 +3,7 @@
 | 字段         | 类型          | 约束                     | 说明     |
 | ------------ | ------------- | ------------------------ | -------- |
 | Id           | bigint        | PK                       | 主键     |
+| PublicUserId | uuid          | UNIQUE                   | Jwt sub  |
 | UserName     | nvarchar(50)  | NOT NULL, UNIQUE         | 登录账号 |
 | PasswordHash | nvarchar(200) | NOT NULL                 | 密码     |
 | RealName     | nvarchar(50)  |                          | 姓名     |
