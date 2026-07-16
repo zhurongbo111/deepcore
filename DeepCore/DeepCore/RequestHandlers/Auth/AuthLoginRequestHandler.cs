@@ -1,5 +1,7 @@
-﻿using DeepCore.DAL.Repository.Interfaces;
+﻿using DeepCore.DAL.Entities;
+using DeepCore.DAL.Repository.Interfaces;
 using DeepCore.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace DeepCore.RequestHandlers.Auth
 {
@@ -7,18 +9,21 @@ namespace DeepCore.RequestHandlers.Auth
     {
         private readonly IJwtTokenService _jwtTokenService;
         private readonly IUserRepository _userRepository;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public AuthLoginRequestHandler(IJwtTokenService jwtTokenService, IUserRepository userRepository)
+        public AuthLoginRequestHandler(IJwtTokenService jwtTokenService, IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
         {
             _jwtTokenService = jwtTokenService;
             _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<AuthLoginResponse> HandleAsync(AuthLoginRequest request, CancellationToken cancellationToken)
         {
-            var user = await _userRepository.GetUserAsync(request.UserName, request.PasswordHash, cancellationToken);
 
-            if (user == null)
+            var user = await _userRepository.GetUserAsync(request.UserName, cancellationToken);
+
+            if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password) != PasswordVerificationResult.Success)
             {
                 return new AuthLoginResponse
                 {

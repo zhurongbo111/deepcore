@@ -10,9 +10,9 @@ namespace DeepCore.DAL.Repository
         {
         }
 
-        public Task<User?> GetUserAsync(string username, string passwordHash, CancellationToken cancellationToken)
+        public Task<User?> GetUserAsync(string username, CancellationToken cancellationToken)
         {
-            return this.Table.Where(u => u.UserName == username && u.PasswordHash == passwordHash)
+            return this.Table.Where(u => u.UserName == username)
                 .FirstOrDefaultAsync(cancellationToken);
         }
     }

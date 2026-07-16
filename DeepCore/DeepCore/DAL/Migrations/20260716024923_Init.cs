@@ -97,6 +97,7 @@ namespace DeepCore.DAL.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    PublicUserId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     UserName = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PasswordHash = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
@@ -266,10 +267,27 @@ namespace DeepCore.DAL.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "CreatedBy", "CreatedTime", "Email", "PasswordHash", "Phone", "PublicUserId", "RealName", "Status", "UpdatedBy", "UpdatedTime", "UserName" },
+                values: new object[] { 1L, null, null, "admin@exmaple.com", "AQAAAAIAAYagAAAAEC8D8rWWMxZn5POiC5IQI1KKLTOYPeqLrip27T2uUQBpGHsZ6JJS5R/6UECsn0wRvQ==", "1234567890", new Guid("bb9e6295-75b0-4021-b630-bb99606116f0"), "Administrator", 0, null, null, "admin" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Inventory_ProductId",
                 table: "Inventory",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Product_Code",
+                table: "Product",
+                column: "Code",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PurchaseOrder_OrderNo",
+                table: "PurchaseOrder",
+                column: "OrderNo",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PurchaseOrder_SupplierId",
@@ -292,6 +310,12 @@ namespace DeepCore.DAL.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_SalesOrder_OrderNo",
+                table: "SalesOrder",
+                column: "OrderNo",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SalesOrderItem_OrderId",
                 table: "SalesOrderItem",
                 column: "OrderId");
@@ -300,6 +324,18 @@ namespace DeepCore.DAL.Migrations
                 name: "IX_SalesOrderItem_ProductId",
                 table: "SalesOrderItem",
                 column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_PublicUserId",
+                table: "Users",
+                column: "PublicUserId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_UserName",
+                table: "Users",
+                column: "UserName",
+                unique: true);
         }
 
         /// <inheritdoc />

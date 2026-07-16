@@ -22,7 +22,7 @@ namespace DeepCore.Services
             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()) // 唯一标识
+                new Claim(JwtRegisteredClaimNames.Sub, user.PublicUserId.ToString()) // 唯一标识
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.SecretKey));

@@ -8,6 +8,6 @@ namespace DeepCore.RequestHandlers.Auth
         public required string UserName { get; set; }
 
         [Required]
-        public required string PasswordHash { get; set; }
+        public required string Password { get; set; }
     }
 }

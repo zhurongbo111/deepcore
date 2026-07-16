@@ -13,6 +13,8 @@ namespace DeepCore.DAL.Configurations
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.OrderNo).IsRequired().HasMaxLength(50);
+            builder.HasIndex(x => x.OrderNo).IsUnique();
+
             builder.Property(x => x.OrderDate).IsRequired();
             builder.Property(x => x.TotalAmount).HasColumnType("decimal(18,2)");
             builder.Property(x => x.Remark).HasMaxLength(500);

@@ -5,6 +5,9 @@ namespace DeepCore.DAL.Entities
     public class User
     {
         public long Id { get; set; }
+
+        public Guid PublicUserId { get; set; }
+
         public string UserName { get; set; } = null!;
 
         public string PasswordHash { get; set; } = null!;

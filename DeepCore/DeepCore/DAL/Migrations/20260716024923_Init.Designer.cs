@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeepCore.DAL.Migrations
 {
     [DbContext(typeof(DeepCoreDbContext))]
-    [Migration("20260714062450_Init")]
+    [Migration("20260716024923_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -148,6 +148,9 @@ namespace DeepCore.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
                     b.ToTable("Product", (string)null);
                 });
 
@@ -187,6 +190,9 @@ namespace DeepCore.DAL.Migrations
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderNo")
+                        .IsUnique();
 
                     b.HasIndex("SupplierId");
 
@@ -269,6 +275,9 @@ namespace DeepCore.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("OrderNo")
+                        .IsUnique();
 
                     b.ToTable("SalesOrder", (string)null);
                 });
@@ -386,6 +395,9 @@ namespace DeepCore.DAL.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("varchar(20)");
 
+                    b.Property<Guid>("PublicUserId")
+                        .HasColumnType("char(36)");
+
                     b.Property<string>("RealName")
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
@@ -406,7 +418,26 @@ namespace DeepCore.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PublicUserId")
+                        .IsUnique();
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
                     b.ToTable("Users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Email = "admin@exmaple.com",
+                            PasswordHash = "AQAAAAIAAYagAAAAEC8D8rWWMxZn5POiC5IQI1KKLTOYPeqLrip27T2uUQBpGHsZ6JJS5R/6UECsn0wRvQ==",
+                            Phone = "1234567890",
+                            PublicUserId = new Guid("bb9e6295-75b0-4021-b630-bb99606116f0"),
+                            RealName = "Administrator",
+                            Status = 0,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("DeepCore.DAL.Entities.Inventory", b =>
