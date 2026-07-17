@@ -18,12 +18,15 @@ namespace DeepCore.RequestHandlers.Users
 
             return new UserListResponse
             {
+                Success = true,
                 Items = users.Select(u => new UserListItemDto
                 {
                     Id = u.Id,
                     UserName = u.UserName,
-                    FullName = u.RealName,
-                    Status = u.Status
+                    RealName = u.RealName,
+                    Status = u.Status,
+                    Phone = u.Phone,
+                    Email = u.Email,
                 }).ToList(),
                 TotalCount = total
             };

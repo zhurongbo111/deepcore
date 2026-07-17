@@ -14,13 +14,13 @@ namespace DeepCore.DAL.Repository
         {
         }
 
-        public Task<User?> GetUserAsync(string username, CancellationToken cancellationToken)
+        public Task<User?> GetUserByUsernameAsync(string username, CancellationToken cancellationToken)
         {
             return this.Table.Where(u => u.UserName == username)
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public Task<User?> GetUserAsync(Guid publicUserId, CancellationToken cancellationToken)
+        public Task<User?> GetUserByPublicUserIdAsync(Guid publicUserId, CancellationToken cancellationToken)
         {
             return this.Table.Where(u => u.PublicUserId == publicUserId)
                 .FirstOrDefaultAsync(cancellationToken);
@@ -50,7 +50,7 @@ namespace DeepCore.DAL.Repository
                 query = query.Where(u => u.Phone.Contains(phone));
             }
 
-            (var items, var total) = await query.ToPagedListAsync(pageSize, pageIndex, cancellationToken);
+            (var items, var total) = await query.ToPagedListAsync(pageIndex, pageSize, cancellationToken);
 
             return (items, total);
         }

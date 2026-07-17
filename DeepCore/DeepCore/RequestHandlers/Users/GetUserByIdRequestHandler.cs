@@ -17,7 +17,8 @@ namespace DeepCore.RequestHandlers.Users
 
             return new GetUserByIdResponse
             {
-                Id = request.Id,
+                Success = user != null,
+                PublicUserId = user?.PublicUserId ?? Guid.Empty,
                 UserName = user?.UserName,
                 FullName = user?.RealName,
                 Phone = user?.Phone,

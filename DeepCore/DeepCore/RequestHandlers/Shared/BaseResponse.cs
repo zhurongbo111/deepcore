@@ -1,4 +1,4 @@
-﻿namespace DeepCore.RequestHandlers
+﻿namespace DeepCore.RequestHandlers.Shared
 {
     public class BaseResponse
     {

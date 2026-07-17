@@ -4,9 +4,9 @@ namespace DeepCore.DAL.Repository.Interfaces
 {
     public interface IUserRepository : IRepository<User>
     {
-        Task<User?> GetUserAsync(string username, CancellationToken cancellationToken);
+        Task<User?> GetUserByUsernameAsync(string username, CancellationToken cancellationToken);
 
-        Task<User?> GetUserAsync(Guid publicUserId, CancellationToken cancellationToken);
+        Task<User?> GetUserByPublicUserIdAsync(Guid publicUserId, CancellationToken cancellationToken);
 
         /// <summary>
         /// Get a user by id

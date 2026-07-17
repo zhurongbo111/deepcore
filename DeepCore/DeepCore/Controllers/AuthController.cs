@@ -27,6 +27,15 @@ namespace DeepCore.Controllers
             return Ok(result);
         }
 
+        [HttpPost("refresh")]
+        [Authorize]
+        [ProducesResponseType(typeof(AuthRefreshResponse), StatusCodes.Status200OK)]
+        public async Task<IActionResult> Refresh([FromBody] AuthRefreshRequest request)
+        {
+            var result = await _mediator.SendAsync(request, HttpContext.RequestAborted);
+            return Ok(result);
+        }
+
         [HttpGet("me")]
         [Authorize]
         [ProducesResponseType(typeof(AuthMeResponse), StatusCodes.Status200OK)]

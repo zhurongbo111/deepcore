@@ -43,7 +43,7 @@ namespace DeepCore.DAL.Repository
                 query = query.Where(s => s.Phone.Contains(phone));
             }
 
-            (var items, var total) = await query.ToPagedListAsync(pageSize, pageIndex, cancellationToken);
+            (var items, var total) = await query.ToPagedListAsync(pageIndex, pageSize, cancellationToken);
 
             return (items, total);
         }

@@ -38,7 +38,7 @@ namespace DeepCore.DAL.Repository
                 query = query.Where(p => p.Code.Contains(keyword) || p.Name.Contains(keyword));
             }
 
-            (var items, var total) = await query.ToPagedListAsync(pageSize, pageIndex, cancellationToken);
+            (var items, var total) = await query.ToPagedListAsync(pageIndex, pageSize, cancellationToken);
 
             return (items, total);
         }

@@ -21,7 +21,7 @@ namespace DeepCore.RequestHandlers.Auth
         public async Task<AuthLoginResponse> HandleAsync(AuthLoginRequest request, CancellationToken cancellationToken)
         {
 
-            var user = await _userRepository.GetUserAsync(request.UserName, cancellationToken);
+            var user = await _userRepository.GetUserByUsernameAsync(request.UserName, cancellationToken);
 
             if (user == null || _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password) != PasswordVerificationResult.Success)
             {

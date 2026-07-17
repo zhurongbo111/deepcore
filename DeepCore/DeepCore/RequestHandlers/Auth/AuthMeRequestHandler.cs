@@ -23,7 +23,7 @@ namespace DeepCore.RequestHandlers.Auth
                 return new AuthMeResponse { Success = false };
             }
             
-            var user = await _userRepository.GetUserAsync(Guid.Parse(userId), cancellationToken);
+            var user = await _userRepository.GetUserByPublicUserIdAsync(Guid.Parse(userId), cancellationToken);
 
             return new AuthMeResponse
             {

@@ -1,7 +1,11 @@
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
+
 namespace DeepCore.RequestHandlers.Customers
 {
     public class UpdateCustomerRequest : IRequest<UpdateCustomerResponse>
     {
+        [JsonIgnore]
         public long Id { get; set; }
         public string? Name { get; set; }
         public string? Contact { get; set; }

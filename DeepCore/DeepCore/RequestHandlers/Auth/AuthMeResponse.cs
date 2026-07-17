@@ -1,3 +1,5 @@
+using DeepCore.RequestHandlers.Shared;
+
 namespace DeepCore.RequestHandlers.Auth
 {
     public class AuthMeResponse : BaseResponse

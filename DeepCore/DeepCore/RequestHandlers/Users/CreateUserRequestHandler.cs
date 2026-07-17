@@ -31,7 +31,7 @@ namespace DeepCore.RequestHandlers.Users
 
             await _userRepository.InsertAsync(user, cancellationToken);
 
-            return new CreateUserResponse { Id = user.Id };
+            return new CreateUserResponse { Success = true, Id = user.Id };
         }
     }
 }
