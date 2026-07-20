@@ -1,9 +1,6 @@
 ﻿using DeepCore.DAL.Repository;
 using DeepCore.DAL.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Runtime.CompilerServices;
 
 namespace DeepCore.DAL
 {
@@ -26,6 +23,7 @@ namespace DeepCore.DAL
             services.AddScoped<ISalesOrderItemRepository, SalesOrderItemRepository>();
             services.AddScoped<ISupplierRepository, SupplierRepository>();
             services.AddScoped<IInventoryRepository, InventoryRepository>();
+            services.AddScoped<IUnitOfWork, EfCoreUnitOfWork>();// Scoped lifetime is important!
             return services;
         }
     }

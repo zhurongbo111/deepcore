@@ -1,3 +1,4 @@
+using DeepCore.RequestHandlers.Shared;
 using System.Collections.Generic;
 
 namespace DeepCore.RequestHandlers.Inventories
@@ -7,14 +8,12 @@ namespace DeepCore.RequestHandlers.Inventories
         public long ProductId { get; set; }
         public string? ProductName { get; set; }
         public string? ProductCode { get; set; }
-        public int Quantity { get; set; }
-        public int LockedQuantity { get; set; }
-        public int AvailableQuantity { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal LockedQuantity { get; set; }
+        public decimal AvailableQuantity { get; set; }
     }
 
-    public class InventoryListResponse
+    public class InventoryListResponse : PagedResponse<InventoryItemDto>
     {
-        public IEnumerable<InventoryItemDto>? Items { get; set; }
-        public long TotalCount { get; set; }
     }
 }
