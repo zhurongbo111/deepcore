@@ -4,6 +4,6 @@ namespace DeepCore.RequestHandlers.Auth
 {
     public class AuthLoginResponse : BaseResponse
     {
-        public required string Token { get; set; }
+        public string? Token { get; set; }
     }
 }
