@@ -11,10 +11,10 @@ namespace DeepCore.DAL.Repository
             _context = context;
         }
 
-        public async Task<IWork> BeginWorkAsync(bool autoCommit, CancellationToken cancellationToken)
+        public async Task<IWork> BeginWorkAsync(CancellationToken cancellationToken)
         {
             var transaction = await _context.Database.BeginTransactionAsync(cancellationToken);
-            return new EfCoreWork(transaction, autoCommit);
+            return new EfCoreWork(transaction);
         }
 
     }
@@ -22,12 +22,10 @@ namespace DeepCore.DAL.Repository
     internal class EfCoreWork : IWork
     {
         private readonly IDbContextTransaction _dbContextTransaction;
-        private readonly bool _autoCommit;
 
-        internal EfCoreWork(IDbContextTransaction dbContextTransaction, bool autoCommit)
+        internal EfCoreWork(IDbContextTransaction dbContextTransaction)
         {
             _dbContextTransaction = dbContextTransaction.ThrowIfNull(nameof(dbContextTransaction));
-            _autoCommit = autoCommit;
         }
 
         public Task CommitAsync(CancellationToken cancellationToken)
@@ -42,25 +40,12 @@ namespace DeepCore.DAL.Repository
 
         public void Dispose()
         {
-            if (_autoCommit)
-            {
-                _dbContextTransaction.Commit();
-            }
-
             _dbContextTransaction.Dispose();
         }
 
-        public async ValueTask DisposeAsync()
+        public ValueTask DisposeAsync()
         {
-            if (_dbContextTransaction != null)
-            {
-                if (_autoCommit)
-                {
-                    await _dbContextTransaction.CommitAsync();
-                }
-
-                await _dbContextTransaction.DisposeAsync();
-            }
+            return _dbContextTransaction.DisposeAsync();
         }
     }
 }

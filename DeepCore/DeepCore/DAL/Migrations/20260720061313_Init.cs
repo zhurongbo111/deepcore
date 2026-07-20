@@ -181,7 +181,7 @@ namespace DeepCore.DAL.Migrations
                     OrderNo = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SupplierId = table.Column<long>(type: "bigint", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    OrderDate = table.Column<DateTimeOffset>(type: "datetime(6)", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     Remark = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: true)

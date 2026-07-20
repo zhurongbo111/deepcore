@@ -1,3 +1,5 @@
+using DeepCore.DAL.Entities;
+using DeepCore.RequestHandlers.Shared;
 using System.Collections.Generic;
 
 namespace DeepCore.RequestHandlers.SalesOrders
@@ -11,11 +13,11 @@ namespace DeepCore.RequestHandlers.SalesOrders
         public decimal Amount { get; set; }
     }
 
-    public class GetSalesOrderByIdResponse
+    public class GetSalesOrderByIdResponse : BaseResponse
     {
         public long Id { get; set; }
         public string? OrderNumber { get; set; }
-        public int Status { get; set; }
+        public SalesOrderStatus Status { get; set; }
         public decimal TotalAmount { get; set; }
         public IEnumerable<SalesOrderDetailItemDto>? Items { get; set; }
     }

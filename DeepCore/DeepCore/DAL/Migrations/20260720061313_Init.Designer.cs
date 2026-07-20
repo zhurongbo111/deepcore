@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeepCore.DAL.Migrations
 {
     [DbContext(typeof(DeepCoreDbContext))]
-    [Migration("20260716082256_Init")]
+    [Migration("20260720061313_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -165,7 +165,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("OrderDate")
+                    b.Property<DateTimeOffset>("OrderDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("OrderNo")

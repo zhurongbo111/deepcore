@@ -1,7 +1,8 @@
+using DeepCore.RequestHandlers.Shared;
+
 namespace DeepCore.RequestHandlers.SalesOrders
 {
-    public class StockOutSalesOrderResponse
+    public class StockOutSalesOrderResponse : BaseResponse
     {
-        public long Id { get; set; }
     }
 }

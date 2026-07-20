@@ -47,7 +47,7 @@ namespace DeepCore.DAL.Repository
 
             if (!string.IsNullOrEmpty(phone))
             {
-                query = query.Where(u => u.Phone.Contains(phone));
+                query = query.Where(u => u.Phone!.Contains(phone));
             }
 
             (var items, var total) = await query.ToPagedListAsync(pageIndex, pageSize, cancellationToken);

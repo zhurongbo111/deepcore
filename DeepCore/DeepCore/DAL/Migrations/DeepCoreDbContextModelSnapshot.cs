@@ -162,7 +162,7 @@ namespace DeepCore.DAL.Migrations
                     b.Property<DateTimeOffset>("CreatedTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("OrderDate")
+                    b.Property<DateTimeOffset>("OrderDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("OrderNo")

@@ -12,6 +12,7 @@ namespace DeepCore.Services
             services.Configure<JwtTokenServiceOptions>(configuration.GetSection(JwtTokenServiceOptions.SectionName));
             services.TryAddScoped(typeof(IPasswordHasher<>), typeof(PasswordHasher<>));
             services.AddScoped<ISessionContextService, SessionContextService>();
+            services.AddSingleton<ICodeGeneraterService, CodeGeneraterService>();
             return services;
         }
     }

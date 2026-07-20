@@ -1,3 +1,5 @@
+using DeepCore.DAL.Entities;
+using DeepCore.RequestHandlers.Shared;
 using System.Collections.Generic;
 
 namespace DeepCore.RequestHandlers.PurchaseOrders
@@ -6,13 +8,11 @@ namespace DeepCore.RequestHandlers.PurchaseOrders
     {
         public long Id { get; set; }
         public string? OrderNumber { get; set; }
-        public int Status { get; set; }
+        public PurchaseOrderStatus Status { get; set; }
         public decimal TotalAmount { get; set; }
     }
 
-    public class PurchaseOrderListResponse
+    public class PurchaseOrderListResponse : PagedResponse<PurchaseOrderListItemDto>
     {
-        public IEnumerable<PurchaseOrderListItemDto>? Items { get; set; }
-        public long TotalCount { get; set; }
     }
 }

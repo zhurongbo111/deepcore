@@ -1,3 +1,6 @@
+using DeepCore.DAL.Repository;
+using DeepCore.RequestHandlers.Inventories;
+
 namespace DeepCore.RequestHandlers.Shared
 {
     public class PagedResponse<T> : BaseResponse

@@ -1,7 +1,8 @@
+using DeepCore.RequestHandlers.Shared;
+
 namespace DeepCore.RequestHandlers.SalesOrders
 {
-    public class SubmitSalesOrderResponse
+    public class SubmitSalesOrderResponse : BaseResponse
     {
-        public long Id { get; set; }
     }
 }

@@ -13,14 +13,22 @@ namespace DeepCore.DAL.Entities
 
         public Supplier? Supplier { get; set; }
 
-        public DateTime OrderDate { get; set; }
+        public DateTimeOffset OrderDate { get; set; }
 
         public decimal TotalAmount { get; set; }
 
-        public int Status { get; set; }
+        public PurchaseOrderStatus Status { get; set; }
 
         public string? Remark { get; set; }
 
         public ICollection<PurchaseOrderItem> Items { get; set; } = new List<PurchaseOrderItem>();
+    }
+
+    public enum PurchaseOrderStatus : int
+    {
+        Draft = 0,
+        Submitted = 1,
+        Canceled = 2,
+        Stocked = 3
     }
 }

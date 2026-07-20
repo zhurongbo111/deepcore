@@ -1,7 +1,8 @@
+using DeepCore.RequestHandlers.Shared;
+
 namespace DeepCore.RequestHandlers.PurchaseOrders
 {
-    public class UpdatePurchaseOrderResponse
+    public class UpdatePurchaseOrderResponse : BaseResponse
     {
-        public long Id { get; set; }
     }
 }

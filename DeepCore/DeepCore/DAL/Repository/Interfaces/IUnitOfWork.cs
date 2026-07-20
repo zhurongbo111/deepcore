@@ -2,6 +2,6 @@ namespace DeepCore.DAL.Repository.Interfaces
 {
     public interface IUnitOfWork
     {
-        Task<IWork> BeginWorkAsync(bool autoCommit, CancellationToken cancellationToken);
+        Task<IWork> BeginWorkAsync(CancellationToken cancellationToken);
     }
 }
