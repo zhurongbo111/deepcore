@@ -17,6 +17,7 @@
           <a-menu-item key="step-form">分步表单</a-menu-item>
           <a-menu-item key="group-form">分组表单</a-menu-item>
           <a-menu-item key="basic-info">基础详情页</a-menu-item>
+          <a-menu-item key="success">成功页面</a-menu-item>
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>

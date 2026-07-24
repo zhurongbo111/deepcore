@@ -35,6 +35,11 @@ const router = createRouter({
           name: 'basic-info',
           component: () => import('../views/demo/BasicInfo.vue'),
         },
+        {
+          path: '/demo/success',
+          name: 'success',
+          component: () => import('../views/demo/Success.vue'),
+        },
       ],
     },
     {
