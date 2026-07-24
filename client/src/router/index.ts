@@ -1,37 +1,48 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import NProgress from 'nprogress'; // progress bar
-import 'nprogress/nprogress.css';
-
-import { appRoutes } from './routes';
-import { REDIRECT_MAIN, NOT_FOUND_ROUTE } from './routes/base';
-import createRouteGuard from './guard';
-
-NProgress.configure({ showSpinner: false }); // NProgress Configuration
+import { createRouter, createWebHistory } from 'vue-router'
+import HomeView from '@/views/HomeView.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: 'login',
+      redirect: 'home',
+      component: MainLayout,
+      children: [
+        {
+          path: 'home',
+          name: 'home',
+          component: HomeView,
+        },
+        {
+          path: '/demo/search-table',
+          name: 'search-table',
+          component: () => import('../views/demo/SearchTable.vue'),
+        },
+        {
+          path: '/demo/step-form',
+          name: 'step-form',
+          component: () => import('../views/demo/StepForm.vue'),
+        },
+        {
+          path: '/demo/group-form',
+          name: 'group-form',
+          component: () => import('../views/demo/GroupForm.vue'),
+        },
+        {
+          path: '/demo/basic-info',
+          name: 'basic-info',
+          component: () => import('../views/demo/BasicInfo.vue'),
+        },
+      ],
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('@/views/login/index.vue'),
-      meta: {
-        requiresAuth: false,
-      },
+      component: () => import('../views/Login.vue'),
     },
-    ...appRoutes,
-    REDIRECT_MAIN,
-    NOT_FOUND_ROUTE,
   ],
-  scrollBehavior() {
-    return { top: 0 };
-  },
-});
+})
 
-createRouteGuard(router);
-
-export default router;
+export default router
