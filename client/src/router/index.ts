@@ -40,6 +40,16 @@ const router = createRouter({
           name: 'success',
           component: () => import('../views/demo/Success.vue'),
         },
+        {
+          path: '/demo/error',
+          name: 'error',
+          component: () => import('../views/demo/Error.vue'),
+        },
+        {
+          path: '/demo/404',
+          name: 'not-found',
+          component: () => import('../views/demo/NotFound.vue'),
+        },
       ],
     },
     {

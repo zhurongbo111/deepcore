@@ -13,8 +13,21 @@
           </a-space>
         </template>
       </a-result>
+      <div class="steps-wrapper">
+        <a-typography-paragraph bold>当前进度
+        </a-typography-paragraph>
+        <a-steps type="dot" :current="2">
+          <a-step title="提交申请" description="2020/10/10 14:00:39" />
+          <a-step title="直属领导审核" description="进行中" />
+          <a-step title="购买证书" description="未开始" />
+          <a-step title="安全测试" description="未开始" />
+          <a-step title="正式上线" description="未开始" />
+        </a-steps>
+      </div>
     </div>
+
   </div>
+
 </template>
 
 <script lang="ts" setup></script>
