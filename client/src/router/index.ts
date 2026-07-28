@@ -38,12 +38,12 @@ const router = createRouter({
         {
           path: '/demo/success',
           name: 'success',
-          component: () => import('../views/demo/Success.vue'),
+          component: () => import('../views/demo/SuccessPage.vue'),
         },
         {
           path: '/demo/error',
           name: 'error',
-          component: () => import('../views/demo/Error.vue'),
+          component: () => import('../views/demo/ErrorPage.vue'),
         },
         {
           path: '/demo/404',
