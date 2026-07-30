@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import MainLayout from '@/layouts/MainLayout.vue'
+import { useAuthGuard } from './authGuard.ts';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -9,6 +10,7 @@ const router = createRouter({
       path: '/',
       redirect: 'home',
       component: MainLayout,
+      meta: { requiresAuth: true },
       children: [
         {
           path: 'home',
@@ -19,6 +21,9 @@ const router = createRouter({
           path: '/demo/search-table',
           name: 'search-table',
           component: () => import('../views/demo/SearchTable.vue'),
+          meta: {
+            requiresAuth: true
+          }
         },
         {
           path: '/demo/step-form',
@@ -55,9 +60,11 @@ const router = createRouter({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../views/Login.vue'),
+      component: () => import('../views/LoginPage.vue'),
     },
   ],
-})
+});
+
+useAuthGuard(router);
 
 export default router

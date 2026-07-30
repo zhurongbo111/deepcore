@@ -17,4 +17,14 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      // 将 /api 开头的请求代理到目标服务器
+      '/api': {
+        target: 'https://localhost:7174',
+        changeOrigin: true,
+        secure: false
+      }
+    }
+  }
 })

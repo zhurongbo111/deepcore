@@ -46,6 +46,9 @@
 </template>
 
 <script lang="ts">
+import { http } from '@/api';
+import { useUserInfoStore } from '@/stores/userInfo';
+import { localStore } from '@/utils/storage';
 export default {
   data() {
     return {
@@ -59,7 +62,22 @@ export default {
     }
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
+      this.loading = true;
+      const response = await http.v1AuthLoginCreate({
+        userName: this.userInfo.username,
+        password: this.userInfo.password
+      });
+      if(response.success) {
+        localStore.set("token", response.token);
+        await http.v1AuthMeList();
+        useUserInfoStore().isLogin = true;
+        this.$router.push({ name: 'home' });
+      }
+      else {
+        this.errorMessage = response.message!;
+      }
+      this.loading = false;
       return false;
     },
     setRememberPassword() {
