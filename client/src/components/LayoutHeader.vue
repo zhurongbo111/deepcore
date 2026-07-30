@@ -11,33 +11,11 @@
     </div>
     <ul class="right-side">
       <li>
-        <a-tooltip content="Search">
-          <a-button class="nav-btn" type="outline" :shape="'circle'">
-            <template #icon>
-              <icon-search />
-            </template>
-          </a-button>
-        </a-tooltip>
-      </li>
-      <li>
-        <a-tooltip :content="true
-          ? 'Dark'
-          : 'Light'
-          ">
-          <a-button class="nav-btn" type="outline" :shape="'circle'" @click="switchRoles">
-            <template #icon>
-              <icon-moon-fill v-if="true" />
-              <icon-sun-fill v-else />
-            </template>
-          </a-button>
-        </a-tooltip>
-      </li>
-      <li>
-        <a-tooltip content="Alerts">
+        <a-tooltip content="提醒">
           <div class="message-box-trigger">
             <a-badge :count="9" dot>
-              <a-button class="nav-btn" type="outline" :shape="'circle'" @click="switchRoles">
-                <icon-notification />
+              <a-button class="nav-btn" type="outline" :shape="'circle'">
+                <IconNotification></IconNotification>
               </a-button>
             </a-badge>
           </div>
@@ -51,31 +29,14 @@
         </a-popover>
       </li>
       <li>
-        <a-tooltip content="Title">
-          <a-button class="nav-btn" type="outline" :shape="'circle'" @click="switchRoles">
-            <template #icon>
-              <icon-settings />
-            </template>
-          </a-button>
-        </a-tooltip>
-      </li>
-      <li>
         <a-dropdown trigger="click">
           <a-avatar :size="32" :style="{ marginRight: '8px', cursor: 'pointer' }">
 
           </a-avatar>
           <template #content>
             <a-doption>
-              <a-space @click="switchRoles">
-                <icon-tag />
-                <span>
-                  切换角色
-                </span>
-              </a-space>
-            </a-doption>
-            <a-doption>
               <a-space @click="$router.push({ name: 'Info' })">
-                <icon-user />
+                <IconUser></IconUser>
                 <span>
                   用户中心
                 </span>
@@ -83,15 +44,15 @@
             </a-doption>
             <a-doption>
               <a-space @click="$router.push({ name: 'Setting' })">
-                <icon-settings />
+                <IconSettings></IconSettings>
                 <span>
                   设置
                 </span>
               </a-space>
             </a-doption>
             <a-doption>
-              <a-space @click="switchRoles">
-                <icon-export />
+              <a-space>
+                <IconExport></IconExport>
                 <span>
                   登出
                 </span>
@@ -104,10 +65,19 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-const switchRoles = async () => {
-  console.log('switchRoles')
-};
+<script lang="ts">
+import { IconNotification, IconSettings, IconUser, IconExport } from '@arco-design/web-vue/es/icon';
+export default {
+  components: {
+    IconNotification,
+    IconSettings,
+    IconUser,
+    IconExport
+  },
+  methods: {
+
+  }
+}
 </script>
 
 <style scoped lang="less">
