@@ -1,3 +1,7 @@
 <Solution>
+  <Folder Name="/docs/">
+    <File Path="../docs/api-design.md" />
+    <File Path="../docs/db-design.md" />
+  </Folder>
   <Project Path="DeepCore/DeepCore.csproj" />
 </Solution>
