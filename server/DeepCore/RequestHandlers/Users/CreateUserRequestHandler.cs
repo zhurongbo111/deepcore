@@ -11,8 +11,8 @@ namespace DeepCore.RequestHandlers.Users
 
         public CreateUserRequestHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
         {
-            _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
+            _passwordHasher = passwordHasher.ThrowIfNull(nameof(passwordHasher));
         }
 
         public async Task<CreateUserResponse> HandleAsync(CreateUserRequest request, CancellationToken cancellationToken)

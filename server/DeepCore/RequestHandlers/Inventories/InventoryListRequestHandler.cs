@@ -8,7 +8,7 @@ namespace DeepCore.RequestHandlers.Inventories
 
         public InventoryListRequestHandler(IInventoryRepository inventoryRepository)
         {
-            _inventoryRepository = inventoryRepository;
+            _inventoryRepository = inventoryRepository.ThrowIfNull(nameof(inventoryRepository));
         }
 
         public async Task<InventoryListResponse> HandleAsync(InventoryListRequest request, CancellationToken cancellationToken)

@@ -12,8 +12,8 @@ namespace DeepCore.RequestHandlers.PurchaseOrders
 
         public CreatePurchaseOrderRequestHandler(IPurchaseOrderRepository purchaseOrderRepository, ICodeGeneraterService codeGeneraterService)
         {
-            _purchaseOrderRepository = purchaseOrderRepository;
-            _codeGeneraterService = codeGeneraterService;
+            _purchaseOrderRepository = purchaseOrderRepository.ThrowIfNull(nameof(purchaseOrderRepository));
+            _codeGeneraterService = codeGeneraterService.ThrowIfNull(nameof(codeGeneraterService));
         }
 
         public async Task<CreatePurchaseOrderResponse> HandleAsync(CreatePurchaseOrderRequest request, CancellationToken cancellationToken)

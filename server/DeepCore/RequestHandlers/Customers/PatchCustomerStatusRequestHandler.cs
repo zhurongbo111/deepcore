@@ -10,7 +10,7 @@ namespace DeepCore.RequestHandlers.Customers
 
         public PatchCustomerStatusRequestHandler(ICustomerRepository customerRepository)
         {
-            _customerRepository = customerRepository;
+            _customerRepository = customerRepository.ThrowIfNull(nameof(customerRepository));
         }
 
         public async Task<PatchCustomerStatusResponse> HandleAsync(PatchCustomerStatusRequest request, CancellationToken cancellationToken)

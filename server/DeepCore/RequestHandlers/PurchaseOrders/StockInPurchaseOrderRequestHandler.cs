@@ -13,9 +13,9 @@ namespace DeepCore.RequestHandlers.PurchaseOrders
 
         public StockInPurchaseOrderRequestHandler(IPurchaseOrderRepository purchaseOrderRepository, IInventoryRepository inventoryRepository, IUnitOfWork unitOfWork)
         {
-            _purchaseOrderRepository = purchaseOrderRepository;
-            _inventoryRepository = inventoryRepository;
-            _unitOfWork = unitOfWork;
+            _purchaseOrderRepository = purchaseOrderRepository.ThrowIfNull(nameof(purchaseOrderRepository));
+            _inventoryRepository = inventoryRepository.ThrowIfNull(nameof(inventoryRepository));
+            _unitOfWork = unitOfWork.ThrowIfNull(nameof(unitOfWork));
         }
 
         public async Task<StockInPurchaseOrderResponse> HandleAsync(StockInPurchaseOrderRequest request, CancellationToken cancellationToken)

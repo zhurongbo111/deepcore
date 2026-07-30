@@ -7,7 +7,7 @@ namespace DeepCore.DAL
         private readonly IServiceScopeFactory _serviceScopeFactory;
         public DeepCoreDatabaseMigration(IServiceScopeFactory serviceScopeFactory)
         {
-            _serviceScopeFactory = serviceScopeFactory;
+            _serviceScopeFactory = serviceScopeFactory.ThrowIfNull(nameof(serviceScopeFactory));
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)

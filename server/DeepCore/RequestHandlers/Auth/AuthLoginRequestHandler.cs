@@ -13,9 +13,9 @@ namespace DeepCore.RequestHandlers.Auth
 
         public AuthLoginRequestHandler(IJwtTokenService jwtTokenService, IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
         {
-            _jwtTokenService = jwtTokenService;
-            _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
+            _jwtTokenService = jwtTokenService.ThrowIfNull(nameof(jwtTokenService));
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
+            _passwordHasher = passwordHasher.ThrowIfNull(nameof(passwordHasher));
         }
 
         public async Task<AuthLoginResponse> HandleAsync(AuthLoginRequest request, CancellationToken cancellationToken)

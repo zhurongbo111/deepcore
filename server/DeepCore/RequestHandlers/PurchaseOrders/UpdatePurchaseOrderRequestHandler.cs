@@ -10,7 +10,7 @@ namespace DeepCore.RequestHandlers.PurchaseOrders
 
         public UpdatePurchaseOrderRequestHandler(IPurchaseOrderRepository purchaseOrderRepository)
         {
-            _purchaseOrderRepository = purchaseOrderRepository;
+            _purchaseOrderRepository = purchaseOrderRepository.ThrowIfNull(nameof(purchaseOrderRepository));
         }
 
         public async Task<UpdatePurchaseOrderResponse> HandleAsync(UpdatePurchaseOrderRequest request, CancellationToken cancellationToken)

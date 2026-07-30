@@ -15,7 +15,7 @@ namespace DeepCore.Controllers
 
         public AuthController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator.ThrowIfNull(nameof(mediator));
         }
 
         [HttpPost("login")]

@@ -11,7 +11,7 @@ namespace DeepCore.RequestHandlers.Inventories
 
         public AdjustInventoryRequestHandler(IInventoryRepository inventoryRepository)
         {
-            _inventoryRepository = inventoryRepository;
+            _inventoryRepository = inventoryRepository.ThrowIfNull(nameof(inventoryRepository));
         }
 
         public async Task<AdjustInventoryResponse> HandleAsync(AdjustInventoryRequest request, CancellationToken cancellationToken)

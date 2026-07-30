@@ -10,7 +10,7 @@ namespace DeepCore.RequestHandlers.Suppliers
 
         public PatchSupplierStatusRequestHandler(ISupplierRepository supplierRepository)
         {
-            _supplierRepository = supplierRepository;
+            _supplierRepository = supplierRepository.ThrowIfNull(nameof(supplierRepository));
         }
 
         public async Task<PatchSupplierStatusResponse> HandleAsync(PatchSupplierStatusRequest request, CancellationToken cancellationToken)

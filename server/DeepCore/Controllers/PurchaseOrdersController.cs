@@ -16,7 +16,7 @@ namespace DeepCore.Controllers
 
         public PurchaseOrdersController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator.ThrowIfNull(nameof(mediator));
         }
 
         [HttpPost]

@@ -9,7 +9,7 @@ namespace DeepCore.RequestHandlers.Customers
 
         public UpdateCustomerRequestHandler(ICustomerRepository customerRepository)
         {
-            _customerRepository = customerRepository;
+            _customerRepository = customerRepository.ThrowIfNull(nameof(customerRepository));
         }
 
         public async Task<UpdateCustomerResponse> HandleAsync(UpdateCustomerRequest request, CancellationToken cancellationToken)

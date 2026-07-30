@@ -6,7 +6,7 @@ namespace DeepCore.RequestHandlers.Inventories
 
         public GetInventoryByProductRequestHandler(DeepCore.DAL.Repository.Interfaces.IInventoryRepository inventoryRepository)
         {
-            _inventoryRepository = inventoryRepository;
+            _inventoryRepository = inventoryRepository.ThrowIfNull(nameof(inventoryRepository));
         }
 
         public async Task<GetInventoryByProductResponse> HandleAsync(GetInventoryByProductRequest request, CancellationToken cancellationToken)

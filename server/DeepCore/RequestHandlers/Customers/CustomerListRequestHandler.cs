@@ -12,7 +12,7 @@ namespace DeepCore.RequestHandlers.Customers
 
         public CustomerListRequestHandler(ICustomerRepository customerRepository)
         {
-            _customerRepository = customerRepository;
+            _customerRepository = customerRepository.ThrowIfNull(nameof(customerRepository));
         }
 
         public async Task<CustomerListResponse> HandleAsync(CustomerListRequest request, CancellationToken cancellationToken)

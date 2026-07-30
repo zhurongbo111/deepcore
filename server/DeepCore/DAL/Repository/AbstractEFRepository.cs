@@ -8,8 +8,8 @@ namespace DeepCore.DAL.Repository
     {
         public AbstractEFRepository(DeepCoreDbContext context)
         {
-            DbContext = context;
-            this.Table = DbContext.Set<TEntity>();
+            DbContext = context.ThrowIfNull(nameof(context));
+            Table = DbContext.Set<TEntity>();
         }
 
         protected DbSet<TEntity> Table { get; }

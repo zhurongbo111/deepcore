@@ -11,9 +11,9 @@ namespace DeepCore.RequestHandlers.Auth
 
         public AuthRefreshRequestHandler(IJwtTokenService jwtTokenService, ISessionContextService sessionContextService, IUserRepository userRepository)
         {
-            _jwtTokenService = jwtTokenService;
-            _sessionContextService = sessionContextService;
-            _userRepository = userRepository;
+            _jwtTokenService = jwtTokenService.ThrowIfNull(nameof(jwtTokenService));
+            _sessionContextService = sessionContextService.ThrowIfNull(nameof(sessionContextService));
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
         }
 
         public async Task<AuthRefreshResponse> HandleAsync(AuthRefreshRequest request, CancellationToken cancellationToken)

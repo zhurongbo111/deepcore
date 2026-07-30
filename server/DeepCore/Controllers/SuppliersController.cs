@@ -16,7 +16,7 @@ namespace DeepCore.Controllers
 
         public SuppliersController(IMediator mediator)
         {
-            _mediator = mediator;
+            _mediator = mediator.ThrowIfNull(nameof(mediator));
         }
 
         [HttpPost]

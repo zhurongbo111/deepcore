@@ -9,7 +9,7 @@ namespace DeepCore.RequestHandlers.Products
 
         public GetProductByIdRequestHandler(IProductRepository productRepository)
         {
-            _productRepository = productRepository;
+            _productRepository = productRepository.ThrowIfNull(nameof(productRepository));
         }
 
         public async Task<GetProductByIdResponse> HandleAsync(GetProductByIdRequest request, CancellationToken cancellationToken)

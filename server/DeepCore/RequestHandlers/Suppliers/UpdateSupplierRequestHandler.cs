@@ -9,7 +9,7 @@ namespace DeepCore.RequestHandlers.Suppliers
 
         public UpdateSupplierRequestHandler(ISupplierRepository supplierRepository)
         {
-            _supplierRepository = supplierRepository;
+            _supplierRepository = supplierRepository.ThrowIfNull(nameof(supplierRepository));
         }
 
         public async Task<UpdateSupplierResponse> HandleAsync(UpdateSupplierRequest request, CancellationToken cancellationToken)

@@ -11,8 +11,8 @@ namespace DeepCore.RequestHandlers.Auth
 
         public AuthMeRequestHandler(ISessionContextService sessionContextService, IUserRepository userRepository)
         {
-            _sessionContextService = sessionContextService;
-            _userRepository = userRepository;
+            _sessionContextService = sessionContextService.ThrowIfNull(nameof(sessionContextService));
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
         }
 
         public async Task<AuthMeResponse> HandleAsync(AuthMeRequest request, CancellationToken cancellationToken)

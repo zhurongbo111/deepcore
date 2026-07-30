@@ -11,7 +11,7 @@ namespace DeepCore.RequestHandlers.Products
 
         public ProductListRequestHandler(IProductRepository productRepository)
         {
-            _productRepository = productRepository;
+            _productRepository = productRepository.ThrowIfNull(nameof(productRepository));
         }
 
         public async Task<ProductListResponse> HandleAsync(ProductListRequest request, CancellationToken cancellationToken)

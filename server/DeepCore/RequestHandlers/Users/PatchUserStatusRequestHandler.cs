@@ -8,7 +8,7 @@ namespace DeepCore.RequestHandlers.Users
 
         public PatchUserStatusRequestHandler(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
         }
 
         public async Task<PatchUserStatusResponse> HandleAsync(PatchUserStatusRequest request, CancellationToken cancellationToken)

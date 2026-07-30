@@ -9,7 +9,7 @@ namespace DeepCore.RequestHandlers.Users
 
         public UserListRequestHandler(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
         }
 
         public async Task<UserListResponse> HandleAsync(UserListRequest request, CancellationToken cancellationToken)

@@ -8,7 +8,7 @@ namespace DeepCore.RequestHandlers.Users
 
         public GetUserByIdRequestHandler(IUserRepository userRepository)
         {
-            _userRepository = userRepository;
+            _userRepository = userRepository.ThrowIfNull(nameof(userRepository));
         }
 
         public async Task<GetUserByIdResponse> HandleAsync(GetUserByIdRequest request, CancellationToken cancellationToken)
