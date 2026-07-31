@@ -4,10 +4,10 @@ namespace DeepCore.RequestHandlers.Auth
 {
     public class AuthLoginRequest : IRequest<AuthLoginResponse>
     {
-        [Required]
+        [Required, MaxLength(50)]
         public required string UserName { get; set; }
 
-        [Required]
+        [Required, MaxLength(100)]
         public required string Password { get; set; }
     }
 }

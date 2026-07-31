@@ -31,6 +31,7 @@ export interface AdjustInventoryRequest {
   productId?: number;
   /** @format double */
   quantityDifference?: number;
+  /** @maxLength 500 */
   reason?: string | null;
 }
 
@@ -40,7 +41,9 @@ export interface AdjustInventoryResponse {
 }
 
 export interface AuthLoginRequest {
+  /** @maxLength 50 */
   userName: string;
+  /** @maxLength 100 */
   password: string;
 }
 
@@ -60,8 +63,10 @@ export interface AuthMeResponse {
 }
 
 export interface AuthPasswordChangeRequest {
-  userName?: string | null;
-  passwordHash?: string | null;
+  /** @maxLength 50 */
+  userName: string;
+  /** @maxLength 200 */
+  passwordHash: string;
 }
 
 export interface AuthPasswordChangeResponse {
@@ -91,10 +96,15 @@ export interface CancelSalesOrderResponse {
 }
 
 export interface CreateCustomerRequest {
+  /** @maxLength 100 */
   name: string;
+  /** @maxLength 50 */
   contact: string;
+  /** @maxLength 20 */
   phone: string;
+  /** @maxLength 200 */
   address: string;
+  /** @maxLength 500 */
   remark?: string | null;
 }
 
@@ -141,7 +151,11 @@ export interface CreateProductResponse {
 export interface CreatePurchaseOrderRequest {
   /** @format int64 */
   supplierId?: number;
-  /** @format int32 */
+  /**
+   * @format int32
+   * @min 0
+   * @max 1
+   */
   status?: number;
   items?: PurchaseOrderItemDto[] | null;
 }
@@ -156,7 +170,11 @@ export interface CreatePurchaseOrderResponse {
 export interface CreateSalesOrderRequest {
   /** @format int64 */
   customerId?: number;
-  /** @format int32 */
+  /**
+   * @format int32
+   * @min 0
+   * @max 1
+   */
   status?: number;
   items?: SalesOrderItemDto[] | null;
 }
@@ -167,10 +185,15 @@ export interface CreateSalesOrderResponse {
 }
 
 export interface CreateSupplierRequest {
+  /** @maxLength 100 */
   name: string;
+  /** @maxLength 50 */
   contact: string;
+  /** @maxLength 20 */
   phone: string;
+  /** @maxLength 200 */
   address: string;
+  /** @maxLength 500 */
   remark?: string | null;
 }
 
@@ -182,9 +205,13 @@ export interface CreateSupplierResponse {
 }
 
 export interface CreateUserRequest {
+  /** @maxLength 50 */
   userName: string;
+  /** @maxLength 100 */
   fullName?: string | null;
+  /** @maxLength 20 */
   phone?: string | null;
+  /** @maxLength 100 */
   email?: string | null;
 }
 
@@ -322,8 +349,12 @@ export interface InventoryListResponse {
 }
 
 export interface PatchCustomerStatusRequest {
-  /** @format int32 */
-  status?: number;
+  /**
+   * @format int32
+   * @min 0
+   * @max 1
+   */
+  status: number;
 }
 
 export interface PatchCustomerStatusResponse {
@@ -415,12 +446,22 @@ export interface PurchaseOrderDetailItemDto {
 
 export interface PurchaseOrderItemDto {
   /** @format int64 */
-  productId?: number;
-  /** @format double */
+  productId: number;
+  /**
+   * @format double
+   * @min 0
+   */
   unitPrice?: number;
-  /** @format int32 */
+  /**
+   * @format int32
+   * @min 1
+   * @max 2147483647
+   */
   quantity?: number;
-  /** @format double */
+  /**
+   * @format double
+   * @min 0
+   */
   amount?: number;
 }
 
@@ -455,12 +496,22 @@ export interface SalesOrderDetailItemDto {
 
 export interface SalesOrderItemDto {
   /** @format int64 */
-  productId?: number;
-  /** @format int32 */
+  productId: number;
+  /**
+   * @format int32
+   * @min 1
+   * @max 2147483647
+   */
   quantity?: number;
-  /** @format double */
+  /**
+   * @format double
+   * @min 0
+   */
   unitPrice?: number;
-  /** @format double */
+  /**
+   * @format double
+   * @min 0
+   */
   amount?: number;
 }
 
@@ -522,10 +573,15 @@ export interface SupplierListResponse {
 }
 
 export interface UpdateCustomerRequest {
+  /** @maxLength 100 */
   name?: string | null;
+  /** @maxLength 50 */
   contact?: string | null;
+  /** @maxLength 20 */
   phone?: string | null;
+  /** @maxLength 200 */
   address?: string | null;
+  /** @maxLength 500 */
   remark?: string | null;
 }
 
@@ -558,8 +614,6 @@ export interface UpdateProductResponse {
 
 export interface UpdatePurchaseOrderRequest {
   /** @format int64 */
-  id?: number;
-  /** @format int64 */
   supplierId?: number;
   items?: PurchaseOrderItemDto[] | null;
 }
@@ -570,10 +624,15 @@ export interface UpdatePurchaseOrderResponse {
 }
 
 export interface UpdateSupplierRequest {
+  /** @maxLength 100 */
   name?: string | null;
+  /** @maxLength 50 */
   contact?: string | null;
+  /** @maxLength 20 */
   phone?: string | null;
+  /** @maxLength 200 */
   address?: string | null;
+  /** @maxLength 500 */
   remark?: string | null;
 }
 
@@ -583,10 +642,11 @@ export interface UpdateSupplierResponse {
 }
 
 export interface UpdateUserRequest {
-  /** @format int64 */
-  id?: number;
+  /** @maxLength 100 */
   fullName?: string | null;
+  /** @maxLength 20 */
   phone?: string | null;
+  /** @maxLength 100 */
   email?: string | null;
 }
 
