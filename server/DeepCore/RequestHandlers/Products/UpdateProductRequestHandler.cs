@@ -28,7 +28,7 @@ namespace DeepCore.RequestHandlers.Products
             product.SalePrice = request.SalePrice ?? product.SalePrice;
             product.PurchasePrice = request.PurchasePrice ?? product.PurchasePrice;
             product.Unit = request.Unit ?? product.Unit;
-            product.Name = request.Name ?? product.Name;
+            product.Name = string.IsNullOrEmpty(request.Name) ? product.Name : request.Name;
 
             await _productRepository.UpdateAsync(product, cancellationToken);
 

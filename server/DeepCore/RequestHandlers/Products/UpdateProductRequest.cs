@@ -7,13 +7,13 @@ namespace DeepCore.RequestHandlers.Products
     {
         [JsonIgnore]
         public long Id { get; set; }
-        [Required, MaxLength(100)]
+        [MaxLength(100)]
         public string? Name { get; set; }
-        [Required, MaxLength(20)]
+        [MaxLength(20)]
         public string? Unit { get; set; }
-        [Required, Range(0.00, double.MaxValue)]
+        [Range(0.00, double.MaxValue)]
         public decimal? SalePrice { get; set; }
-        [Required, Range(0.00, double.MaxValue)]
+        [Range(0.00, double.MaxValue)]
         public decimal? PurchasePrice { get; set; }
     }
 }

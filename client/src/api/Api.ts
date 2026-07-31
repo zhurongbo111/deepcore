@@ -106,15 +106,28 @@ export interface CreateCustomerResponse {
 }
 
 export interface CreateProductRequest {
-  code?: string | null;
-  name?: string | null;
-  unit?: string | null;
-  /** @format double */
-  purchasePrice?: number;
-  /** @format double */
-  salePrice?: number;
-  /** @format int32 */
-  status?: number;
+  /** @maxLength 50 */
+  code: string;
+  /** @maxLength 100 */
+  name: string;
+  /** @maxLength 20 */
+  unit: string;
+  /**
+   * @format double
+   * @min 0
+   */
+  purchasePrice: number;
+  /**
+   * @format double
+   * @min 0
+   */
+  salePrice: number;
+  /**
+   * @format int32
+   * @min 0
+   * @max 1
+   */
+  status: number;
 }
 
 export interface CreateProductResponse {
@@ -323,8 +336,12 @@ export interface PatchCustomerStatusResponse {
 }
 
 export interface PatchProductStatusRequest {
-  /** @format int32 */
-  status?: number;
+  /**
+   * @format int32
+   * @min 0
+   * @max 1
+   */
+  status: number;
 }
 
 export interface PatchProductStatusResponse {
@@ -369,9 +386,9 @@ export interface ProductDto {
   name?: string | null;
   unit?: string | null;
   /** @format double */
-  purchasePrice?: number | null;
+  purchasePrice?: number;
   /** @format double */
-  salePrice?: number | null;
+  salePrice?: number;
   /** @format int32 */
   status?: number;
 }
@@ -518,11 +535,19 @@ export interface UpdateCustomerResponse {
 }
 
 export interface UpdateProductRequest {
+  /** @maxLength 100 */
   name?: string | null;
+  /** @maxLength 20 */
   unit?: string | null;
-  /** @format double */
+  /**
+   * @format double
+   * @min 0
+   */
   salePrice?: number | null;
-  /** @format double */
+  /**
+   * @format double
+   * @min 0
+   */
   purchasePrice?: number | null;
 }
 
