@@ -1,8 +1,9 @@
 // src/api/index.ts
 import { localStore } from '@/utils/storage';
 import { Api } from './Api';
-import type { AxiosResponse } from 'axios';
+import { AxiosError } from 'axios';
 import message from '@/utils/message';
+import type { HttpValidationError } from './types';
 
 const api = new Api({
   baseURL: ""
@@ -17,8 +18,18 @@ api.instance.interceptors.request.use((config) => {
   return config;
 });
 
-api.instance.interceptors.response.use((response) => response, (error: { response?:  AxiosResponse<string>}) => {
-  switch(error.response?.status) {
+api.instance.interceptors.response.use((response) => response, (error: AxiosError<unknown>) => {
+  switch (error.response?.status) {
+    case 400:
+      const res = error.response.data as HttpValidationError;
+      if (res?.errors) {
+        // Object.entries(res.errors).forEach(([field, messages]) => {
+        //   console.log(`字段 ${field} 错误:`, messages.join(', '));
+        // });
+        message.error("输入参数有误，请修正以后再次提交！");
+      }
+
+      return Promise.resolve({ data: { success: false, message: "输入参数有误，请修正以后再次提交！" } });
     case 401:
       message.error("你的登录状态已过期，请重新登录！");
       break;

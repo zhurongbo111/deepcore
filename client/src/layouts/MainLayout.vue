@@ -6,8 +6,7 @@
     <a-layout-sider class="layout-sider" collapsible>
       <a-menu :style="{ width: '100%', height: '100%' }" @menu-item-click="onClickMenuItem">
         <a-menu-item key="home">
-          <IconDashboard></IconDashboard>
-          Home
+          <IconDashboard></IconDashboard>Home
         </a-menu-item>
         <a-sub-menu key="4">
           <template #title>
@@ -21,6 +20,9 @@
           <a-menu-item key="error">错误页面</a-menu-item>
           <a-menu-item key="not-found">404</a-menu-item>
         </a-sub-menu>
+        <a-menu-item key="product-list">
+          <IconCommon></IconCommon>商品管理
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout class="layout-main">
@@ -37,6 +39,7 @@
 import {
   IconDashboard,
   IconCalendar,
+  IconCommon
 } from '@arco-design/web-vue/es/icon';
 
 import LayoutHeader from '../components/LayoutHeader.vue';
@@ -44,6 +47,7 @@ export default {
   components: {
     IconDashboard,
     IconCalendar,
+    IconCommon,
     LayoutHeader
   },
   data() {

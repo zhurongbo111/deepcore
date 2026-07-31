@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '@/views/HomeView.vue'
 import MainLayout from '@/layouts/MainLayout.vue'
 import { useAuthGuard } from './authGuard.ts';
 import PlaceHolderLayout from '@/layouts/PlaceHolderLayout.vue';
+import DashboardView from '@/views/DashboardView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,7 +16,7 @@ const router = createRouter({
         {
           path: 'home',
           name: 'home',
-          component: HomeView,
+          component: DashboardView,
         },
         {
           path: 'demo',
@@ -58,6 +58,11 @@ const router = createRouter({
               component: () => import('../views/demo/NotFound.vue'),
             },
           ]
+        },
+        {
+          path: "products",
+          name: "product-list",
+          component: () => import('../views/ProductList.vue')
         },
       ],
     },

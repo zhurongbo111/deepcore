@@ -15,8 +15,9 @@
               </a-form-item>
             </a-col>
             <a-col :span="8">
-              <a-form-item label="过滤">
-                <a-input placeholder="请输入"></a-input>
+              <a-form-item field="filterType" label="状态">
+                <a-select :options="[{ label: '启用', value: 1 }, { label: '停用', value: 2 }]"
+                  placeholder="请选择状态" />
               </a-form-item>
             </a-col>
             <a-col :span="8">
