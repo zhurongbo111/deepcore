@@ -23,6 +23,24 @@
         <a-menu-item key="product-list">
           <IconCommon></IconCommon>商品管理
         </a-menu-item>
+        <a-menu-item key="customer-list">
+          <IconCommon></IconCommon>客户管理
+        </a-menu-item>
+        <a-menu-item key="supplier-list">
+          <IconCommon></IconCommon>供应商管理
+        </a-menu-item>
+        <a-menu-item key="sales-order-list">
+          <IconCommon></IconCommon>销售订单
+        </a-menu-item>
+        <a-menu-item key="purchase-order-list">
+          <IconCommon></IconCommon>采购订单
+        </a-menu-item>
+        <a-menu-item key="inventory-list">
+          <IconCommon></IconCommon>库存管理
+        </a-menu-item>
+        <a-menu-item key="user-list">
+          <IconCommon></IconCommon>用户管理
+        </a-menu-item>
       </a-menu>
     </a-layout-sider>
     <a-layout class="layout-main">

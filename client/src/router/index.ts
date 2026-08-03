@@ -64,6 +64,36 @@ const router = createRouter({
           name: "product-list",
           component: () => import('../views/ProductList.vue')
         },
+        {
+          path: "customers",
+          name: "customer-list",
+          component: () => import('../views/CustomerList.vue')
+        },
+        {
+          path: "suppliers",
+          name: "supplier-list",
+          component: () => import('../views/SupplierList.vue')
+        },
+        {
+          path: "sales-orders",
+          name: "sales-order-list",
+          component: () => import('../views/SalesOrder.vue')
+        },
+        {
+          path: "purchase-orders",
+          name: "purchase-order-list",
+          component: () => import('../views/PurchaseOrder.vue')
+        },
+        {
+          path: "inventory",
+          name: "inventory-list",
+          component: () => import('../views/ProductInventory.vue')
+        },
+        {
+          path: "users",
+          name: "user-list",
+          component: () => import('../views/UserList.vue')
+        },
       ],
     },
     {
